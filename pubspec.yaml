@@ -1,7 +1,7 @@
 name: flutter_session_jwt
 description: A new Flutter package project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/karthik-gowda/flutter_session_jwt
 
 environment:
   sdk: ">=2.19.6 <3.0.0"
