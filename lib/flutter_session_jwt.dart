@@ -32,8 +32,8 @@ class FlutterSessionJwt {
   ///
   ///```Note:```
   ///Make sure to save token using ```FlutterSessionJwt.saveToken("token here")``` method before using other methods
-  static Map<String, dynamic> getPayload() {
-    final token = _getJwtToken();
+  static getPayload() async {
+    final token = await _getJwtToken();
     if (token == "" || token == null) {
       throw const FormatException(
           'Invalid token : Please save valid jwt token');

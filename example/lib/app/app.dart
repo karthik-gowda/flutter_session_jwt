@@ -71,11 +71,45 @@ class _FlutterSessionJwtDemoState extends State<FlutterSessionJwtDemo> {
                           if (_formKey.currentState!.validate()) {
                             var token = _tokenInputController.text;
                             FlutterSessionJwt.saveToken(token);
-                            log("Token saved");
+                            print("Token saved");
                           }
                         },
                         child: const Text(
                           "Save Token",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        )),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Divider(
+                  thickness: 2,
+                ),
+                const Text(
+                  "Other useful methods",
+                  style: TextStyle(fontSize: 20),
+                ),
+                const Text("[Save token before using other methods]"),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: SizedBox(
+                    width: 150,
+                    height: 45,
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            Map<String, dynamic> payload =
+                                await FlutterSessionJwt.getPayload();
+                            print(payload);
+                          }
+                        },
+                        child: const Text(
+                          "Get payload",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -90,5 +124,24 @@ class _FlutterSessionJwtDemoState extends State<FlutterSessionJwtDemo> {
         ),
       ),
     );
+  }
+
+  void showAlert(msg) {
+    var alert = AlertDialog(
+        title: const Text("Flutter session JWT"),
+        content: Text(msg),
+        actions: <Widget>[
+          TextButton(
+              child: const Text(
+                "Ok",
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              })
+        ]);
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) => alert);
   }
 }
