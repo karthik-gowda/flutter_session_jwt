@@ -70,8 +70,8 @@ class FlutterSessionJwt {
   ///
   ///```Note:```
   ///Make sure to save token using ```FlutterSessionJwt.saveToken("token here")``` method before using other methods
-  static bool isTokenExpired() {
-    final expirationDate = getExpirationDateTime();
+  static Future<bool> isTokenExpired() async {
+    final expirationDate = await getExpirationDateTime();
     if (expirationDate == null) {
       return false;
     }
@@ -79,8 +79,8 @@ class FlutterSessionJwt {
     return DateTime.now().isAfter(expirationDate);
   }
 
-  static DateTime? _getExpiryDate({required String param}) {
-    final decodedToken = getPayload();
+  static _getExpiryDate({required String param}) async {
+    final decodedToken = await getPayload();
     final expiration = decodedToken[param] as int?;
     if (expiration == null) {
       return null;
@@ -93,18 +93,29 @@ class FlutterSessionJwt {
   ///
   ///```Note:```
   ///Make sure to save token using ```FlutterSessionJwt.saveToken("token here")``` method before using other methods
-  static DateTime? getExpirationDateTime() {
+  static getExpirationDateTime() {
     return _getExpiryDate(param: 'exp');
   }
 
-  /// Returns token issued date (iat)
+  /// Returns token issued DateTime (iat)
   ///
   /// Throws [FormatException] if parameter is not a valid JWT token.
   ///
   ///```Note:```
-  ///Make sure to save token using ```FlutterSessionJwt.saveToken("token here")``` method before using other methods
-  static Duration? getIssuedDateTime() {
-    final issuedAtDate = _getExpiryDate(param: 'iat');
+  ///Make sure to save token using ```FlutterSessionJwt.saveToken("token here")``` before using other methods
+  static getIssuedDateTime() async {
+    final issuedAtDate = await _getExpiryDate(param: 'iat');
+    if (issuedAtDate == null) {
+      return null;
+    }
+    return issuedAtDate;
+  }
+
+  /// Returns the duration from the issued date and time
+  ///
+  ///
+  static getDurationFromIssuedTime() async {
+    final issuedAtDate = await _getExpiryDate(param: 'iat');
     if (issuedAtDate == null) {
       return null;
     }
