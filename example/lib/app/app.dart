@@ -27,8 +27,7 @@ class _FlutterSessionJwtDemoState extends State<FlutterSessionJwtDemo> {
                     child: TextFormField(
                       maxLines: 7,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      validator: (value) =>
-                          value!.isEmpty ? 'Field cannot be empty' : null,
+                      validator: validateToken,
                       controller: _tokenInputController,
                       onChanged: (value) {},
                       style: const TextStyle(
@@ -66,11 +65,10 @@ class _FlutterSessionJwtDemoState extends State<FlutterSessionJwtDemo> {
                       width: 150,
                       height: 45,
                       child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               var token = _tokenInputController.text;
-                              FlutterSessionJwt.saveToken(token);
-                              print("Token saved");
+                              await FlutterSessionJwt.saveToken(token);
                             }
                           },
                           child: const Text(
@@ -193,6 +191,15 @@ class _FlutterSessionJwtDemoState extends State<FlutterSessionJwtDemo> {
         ),
       ),
     );
+  }
+
+  String? validateToken(String? value) {
+    if (value!.isEmpty) {
+      return 'Field cannot be empty';
+    } else if (value.split(".").length != 3) {
+      return 'Enter a valid token';
+    } else {}
+    return null;
   }
 
   void showAlert(msg) {

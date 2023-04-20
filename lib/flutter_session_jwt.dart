@@ -18,10 +18,17 @@ class FlutterSessionJwt {
   ///Keychain is used for iOS
   ///
   ///AES encryption is used for Android. AES secret key is encrypted with RSA and RSA key is stored in KeyStore
-  static Future saveToken(String jwtToken) async => await _storage.write(
+  static Future saveToken(String jwtToken) async {
+    if (jwtToken.split(".").length != 3) {
+      throw const FormatException("Invalid token");
+    } else {
+      await _storage.write(
         key: _keyJwtToken,
         value: jwtToken,
       );
+      print("Token saved successfully");
+    }
+  }
 
   //To get jwt token from storage
   static _getJwtToken() async => await _storage.read(key: _keyJwtToken);
