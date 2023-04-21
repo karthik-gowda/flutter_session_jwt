@@ -30,7 +30,7 @@ dependencies:
 
 ## Example Screenshot
 
-<img src="https://github.com/karthik-gowda/flutter_session_jwt/blob/main/assets/example.png" width="350" title="hover text">
+<img src="https://github.com/karthik-gowda/flutter_session_jwt/blob/main/assets/example.png" width="350" title="Example screenshot"/>
 
 ## Usage
 
