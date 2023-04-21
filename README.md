@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-#flutter_session_jwt
+# flutter_session_jwt
 
 This package allows you to store the JWT token in secure storage and can decode the json web token. Since the payload is base64 encoded you can easily know the payload data stored with no password required, there are other methods available to get expiry date, issued date, and can check whether token expired or not.
 
@@ -29,6 +29,8 @@ dependencies:
 ```
 
 ## Example Screenshot
+
+![Example screenshot](https://github.com/karthik-gowda/flutter_session_jwt/blob/main/assets/example.png)
 
 ## Usage
 
