@@ -26,7 +26,6 @@ class FlutterSessionJwt {
         key: _keyJwtToken,
         value: jwtToken,
       );
-      print("Token saved successfully");
     }
   }
 
