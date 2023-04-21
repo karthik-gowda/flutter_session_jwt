@@ -30,7 +30,7 @@ dependencies:
 
 ## Example Screenshot
 
-<img src="https://raw.githubusercontent.com/karthik-gowda/flutter_session_jwt/main/assets/example.png?token=GHSAT0AAAAAACBECGUC4R7TZ3M5VJUSRFEAZCCXIKA" alt="Example screenshot" width="300">
+<img src="https://github.com/karthik-gowda/flutter_session_jwt/raw/main/assets/example.png" alt="Example screenshot" width="300">
 
 ## Usage
 
