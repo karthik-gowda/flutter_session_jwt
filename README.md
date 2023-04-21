@@ -11,29 +11,94 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+#flutter_session_jwt
 
-## Features
+This package allows you to store the JWT token in secure storage and can decode the json web token. Since the payload is base64 encoded you can easily know the payload data stored with no password required, there are other methods available to get expiry date, issued date, and can check whether token expired or not.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+This package can help you to store the JWT token in secure storage and provide you different methods to access information from the token.
+
+> Note: Make sure to save the token before accessing other methods.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+In your `pubspec.yaml` file within your Flutter Project:
+
+```yaml
+dependencies:
+  flutter_session_jwt: <latest_version>
+```
+
+## Example Screenshot
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Import the package
 
 ```dart
-const like = 'sample';
+import 'package:flutter_session_jwt/flutter_session_jwt.dart';
 ```
 
-## Additional information
+Here is an exmaple to store the JWT token post login
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```dart
+Future<http.Response> login(String userName , String password) async{
+  var response = await http.post(
+    Uri.parse('https://jsonplaceholder.typicode.com/albums'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'userName': userName,
+      'password': password
+    }),
+  );
+
+  if(response.statusCode == 200){
+    var token = response.body.token;
+    await FlutterSessionJwt.saveToken(token);
+  }
+}
+```
+
+Once token is saved, you can access the other methods as below.
+
+- To get payload from JWT token
+
+```dart
+//This will return payload object/map
+    await FlutterSessionJwt.getPayload();
+```
+
+- To get expiration date and time
+
+```dart
+//Make sure pass `exp` key in the payload
+//This method will return expiration date and time
+await FlutterSessionJwt.getExpirationDateTime();
+```
+
+- To get issued date and time
+
+```dart
+//Make sure pass `iat` key in the payload
+ await FlutterSessionJwt.getIssuedDateTime();
+```
+
+- To get whether token has expired or not
+
+```dart
+//This will return bool with true/false
+//If token expired, it will return true else false
+await FlutterSessionJwt.isTokenExpired();
+```
+
+- To get the time difference between issued time and current time
+
+```dart
+//This will return the token time
+await FlutterSessionJwt.getDurationFromIssuedTime();
+```
+
+## License
+
+MIT
