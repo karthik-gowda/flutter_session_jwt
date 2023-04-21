@@ -98,6 +98,8 @@ class FlutterSessionJwt {
 
   /// Returns DateTime of token expiry
   ///
+  /// Returns null if issued date is not found in payload
+  ///
   ///```Note:```
   ///Make sure to save token using ```FlutterSessionJwt.saveToken("token here")``` method before using other methods
   static getExpirationDateTime() {
@@ -108,8 +110,10 @@ class FlutterSessionJwt {
   ///
   /// Throws [FormatException] if parameter is not a valid JWT token.
   ///
+  /// Returns null if issued date is not found in payload
+  ///
   ///```Note:```
-  ///Make sure to save token using ```FlutterSessionJwt.saveToken("token here")``` before using other methods
+  /// Make sure to save token using ```FlutterSessionJwt.saveToken("token here")``` before using other methods
   static getIssuedDateTime() async {
     final issuedAtDate = await _getExpiryDate(param: 'iat');
     if (issuedAtDate == null) {
@@ -118,9 +122,9 @@ class FlutterSessionJwt {
     return issuedAtDate;
   }
 
-  /// Returns the duration from the issued date and time
+  /// Returns the duration from the issued date and time.
   ///
-  ///
+  ///Returns null if issued date is not found in payload.
   static getDurationFromIssuedTime() async {
     final issuedAtDate = await _getExpiryDate(param: 'iat');
     if (issuedAtDate == null) {
