@@ -9,3 +9,7 @@ Added screenshot to pub
 ## 0.0.3
 
 Added screenshot to pub
+
+## 0.0.4
+
+Added screenshot to pub
