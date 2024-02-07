@@ -17,3 +17,7 @@ Added screenshot to pub
 ## 0.0.5
 
 Added screenshot to pub
+
+## 0.0.6
+
+Upgraded dependencies to latest version
