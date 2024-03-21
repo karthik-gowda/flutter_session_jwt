@@ -21,3 +21,7 @@ Added screenshot to pub
 ## 0.0.6
 
 Upgraded dependencies to latest version
+
+## 0.0.7
+
+Add method `retriveToken()` to get the saved token

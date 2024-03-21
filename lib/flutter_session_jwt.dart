@@ -32,6 +32,14 @@ class FlutterSessionJwt {
   //To get jwt token from storage
   static _getJwtToken() async => await _storage.read(key: _keyJwtToken);
 
+  /// Retrieve token from storage
+  ///
+  /// Returns token as ```String``` if token is saved in storage
+  ///
+  ///```Note:```
+  ///Make sure to save token using ```FlutterSessionJwt.saveToken("token here")``` method before using other methods
+  static Future<String?> retrieveToken() async => await _getJwtToken();
+
   ///Get payload from jwt token
   ///
   ///Returns Map<String, dynamic> of the payload object which is encryped in jwt token
