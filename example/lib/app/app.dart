@@ -95,6 +95,29 @@ class _FlutterSessionJwtDemoState extends State<FlutterSessionJwtDemo> {
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: SizedBox(
+                      width: 180,
+                      height: 45,
+                      child: ElevatedButton(
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              var payload =
+                                  await FlutterSessionJwt.retrieveToken();
+                              showAlert(payload.toString());
+                            }
+                          },
+                          child: const Text(
+                            "Retrieve token",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          )),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: SizedBox(
                       width: 150,
                       height: 45,
                       child: ElevatedButton(
