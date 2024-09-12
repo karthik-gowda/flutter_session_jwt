@@ -71,6 +71,13 @@ Once token is saved, you can access the other methods as below.
     await FlutterSessionJwt.getPayload();
 ```
 
+- To retrieve saved token
+
+```dart
+//This method will return saved token for further API calls
+await FlutterSessionJwt.retrieveToken();
+```
+
 - To get expiration date and time
 
 ```dart
