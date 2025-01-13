@@ -68,7 +68,7 @@ Once token is saved, you can access the other methods as below.
 
 ```dart
 //This will return payload object/map
-    await FlutterSessionJwt.getPayload();
+await FlutterSessionJwt.getPayload();
 ```
 
 - To retrieve saved token
@@ -82,7 +82,7 @@ await FlutterSessionJwt.retrieveToken();
 
 ```dart
 //Make sure pass `exp` key in the payload
-//This method will return expiration date and time
+//This method will return expiration ```DateTime```
 await FlutterSessionJwt.getExpirationDateTime();
 ```
 
@@ -90,6 +90,7 @@ await FlutterSessionJwt.getExpirationDateTime();
 
 ```dart
 //Make sure pass `iat` key in the payload
+//This method will return issuedAt ```DateTime```
  await FlutterSessionJwt.getIssuedDateTime();
 ```
 
@@ -106,6 +107,13 @@ await FlutterSessionJwt.isTokenExpired();
 ```dart
 //This will return the token time
 await FlutterSessionJwt.getDurationFromIssuedTime();
+```
+
+- To delete the token from storage
+
+```dart
+//This will return the token time
+await FlutterSessionJwt.deleteToken();
 ```
 
 ## License
