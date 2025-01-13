@@ -105,14 +105,14 @@ await FlutterSessionJwt.isTokenExpired();
 - To get the time difference between issued time and current time
 
 ```dart
-//This will return the token time
+//This will return the token's age since issue
 await FlutterSessionJwt.getDurationFromIssuedTime();
 ```
 
 - To delete the token from storage
 
 ```dart
-//This will return the token time
+//This will delete the token
 await FlutterSessionJwt.deleteToken();
 ```
 
