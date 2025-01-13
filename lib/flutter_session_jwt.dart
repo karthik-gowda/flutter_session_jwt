@@ -139,4 +139,10 @@ class FlutterSessionJwt {
     }
     return DateTime.now().difference(issuedAtDate); //return
   }
+
+  /// delete token
+  static Future deleteToken()async{
+    await _storage.delete(key: _keyJwtToken);
+  }
+  
 }
