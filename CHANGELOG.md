@@ -29,3 +29,7 @@ Added method `retriveToken()` to get the saved token
 ## 0.0.8
 
 Added method `deleteToken()` to delete the saved token
+
+## 1.0.0
+
+Cleanup code structure, namings and comments
