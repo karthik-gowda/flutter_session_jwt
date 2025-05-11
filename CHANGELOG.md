@@ -33,3 +33,12 @@ Added method `deleteToken()` to delete the saved token
 ## 1.0.0
 
 Cleanup code structure, namings and comments
+
+## 1.1.0
+
+Added comprehensive error handling:
+- Introduced custom `JwtException` and `JwtStorageException` classes
+- Added detailed error messages for all operations
+- Improved token validation and format verification
+- Enhanced error handling for payload decoding
+- Added proper error catching for storage operations
