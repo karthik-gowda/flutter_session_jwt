@@ -42,3 +42,16 @@ Added comprehensive error handling:
 - Improved token validation and format verification
 - Enhanced error handling for payload decoding
 - Added proper error catching for storage operations
+
+## 1.2.0
+
+- Added `FlutterSessionJwt.decode(token)`, a static method to decode any JWT
+  string's payload without touching secure storage
+- Added an optional `token` parameter to `getPayload`, `isTokenExpired`,
+  `getExpirationDateTime`, `getIssuedDateTime`, and `getDurationFromIssuedTime`
+  so they can inspect an arbitrary token instead of only the stored one
+- Added refresh token support: `saveRefreshToken`, `saveTokenPair`,
+  `retrieveRefreshToken`, `hasRefreshToken`, `deleteRefreshToken`, and
+  `deleteTokens` (clears both access and refresh tokens)
+- Upgraded `flutter_secure_storage` to `^11.0.0`
+- Raised minimum SDK constraints to Dart `>=3.8.0` and Flutter `>=3.19.0`

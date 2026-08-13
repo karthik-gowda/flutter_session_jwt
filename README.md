@@ -116,6 +116,52 @@ await FlutterSessionJwt.getDurationFromIssuedTime();
 await FlutterSessionJwt.deleteToken();
 ```
 
+## Decoding a token without saving it
+
+Every method above operates on the token saved in storage. If you just want to
+inspect a token — for example checking a freshly received token's `exp` claim
+before deciding whether to keep it, or decoding a token that arrived via a deep
+link — use the static `decode()` method, or pass `token:` to any of the getters
+above. Neither of these touches secure storage:
+
+```dart
+// Pure decode, no storage involved
+final payload = FlutterSessionJwt.decode(someToken);
+
+// Same idea for the date/expiry helpers
+final isExpired = await FlutterSessionJwt.isTokenExpired(token: someToken);
+final expiry = await FlutterSessionJwt.getExpirationDateTime(token: someToken);
+```
+
+## Access + refresh tokens
+
+Most real-world auth flows issue a short-lived access token alongside a
+longer-lived refresh token. `saveToken`/`retrieveToken`/`deleteToken` continue
+to manage the access token as before; use the following to manage the refresh
+token alongside it:
+
+```dart
+// After login, save both tokens in one call
+await FlutterSessionJwt.saveTokenPair(
+  accessToken: accessToken,
+  refreshToken: refreshToken,
+);
+
+// Or save/retrieve the refresh token on its own
+await FlutterSessionJwt.saveRefreshToken(refreshToken);
+final storedRefreshToken = await FlutterSessionJwt.retrieveRefreshToken();
+final hasRefreshToken = await FlutterSessionJwt.hasRefreshToken();
+
+// When your access token has expired, call your refresh endpoint with
+// storedRefreshToken, then save the new pair the same way.
+
+// On logout, clear both tokens
+await FlutterSessionJwt.deleteTokens();
+```
+
+> Note: unlike `saveToken`, `saveRefreshToken` does not validate a three-part
+> JWT structure, since many backends issue opaque (non-JWT) refresh tokens.
+
 ## License
 
 MIT
